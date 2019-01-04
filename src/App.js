@@ -5,8 +5,6 @@ import store from './store';
 
 import Routes from './routes';
 
-import dotenv from 'dotenv';
-
 import './config/reactotron';
 
 import { ToastContainer } from 'react-toastify';
