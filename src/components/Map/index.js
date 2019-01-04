@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import MapGL, { Marker } from 'react-map-gl';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Creators as ModalActions } from '../../store/ducks/modal';
+
+// import 'mapbox-gl/dist/mapbox-gl.css';
 import './styles.css';
 
-export default class Map extends Component {
+class Map extends Component {
   state = {
     viewport: {
       width: window.innerWidth,
@@ -43,24 +49,22 @@ export default class Map extends Component {
       <MapGL
         {...this.state.viewport}
         onClick={this.handleMapClick}
-        mapStyle="mapbox://styles/mapbox/basic-v9"
+        mapStyle='mapbox://styles/mapbox/basic-v9'
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
-        <Marker
-          latitude={-23.5439948}
-          longitude={-46.6065452}
-        >
-          <img
-            style={{
-              borderRadius: 100,
-              width: 48,
-              height: 48
-            }}
-            src="https://avatars2.githubusercontent.com/u/2254731?v=4"
-          />
+        <Marker latitude={-23.5439948} longitude={-46.6065452}>
+          <img className='avatar' src='https://avatars2.githubusercontent.com/u/2254731?v=4' />
         </Marker>
       </MapGL>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  users: state.users,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Map);
