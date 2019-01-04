@@ -7,9 +7,9 @@ export default class Map extends Component {
     viewport: {
       width: window.innerWidth,
       height: window.innerHeight,
-      latitude: -21.975923,
-      longitude: -46.780686,
-      zoom: 15,
+      latitude: -23.5439948,
+      longitude: -46.6065452,
+      zoom: 14
     },
   };
 
@@ -23,11 +23,9 @@ export default class Map extends Component {
   }
 
   resize = () => {
-    const { viewport } = this.state;
-
     this.setState({
       viewport: {
-        ...viewport,
+        ...this.state.viewport,
         width: window.innerWidth,
         height: window.innerHeight,
       },
@@ -36,27 +34,31 @@ export default class Map extends Component {
 
   handleMapClick = async (e) => {
     const [longitude, latitude] = e.lngLat;
-    const { showModal } = this.props;
-
-    await showModal({ latitude, longitude });
+    
+    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`)
   };
 
   render() {
-    const { viewport: viewportState } = this.state;
-
     return (
       <MapGL
-        {...viewportState}
+        {...this.state.viewport}
         onClick={this.handleMapClick}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/mapbox/basic-v9"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
         <Marker
-          latitude={1}
-          longitude={1}
+          latitude={-23.5439948}
+          longitude={-46.6065452}
         >
-          <img className="avatar" alt={`${user.name} Avatar`} src={user.avatar} />
+          <img
+            style={{
+              borderRadius: 100,
+              width: 48,
+              height: 48
+            }}
+            src="https://avatars2.githubusercontent.com/u/2254731?v=4"
+          />
         </Marker>
       </MapGL>
     );

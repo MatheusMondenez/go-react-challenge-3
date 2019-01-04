@@ -14,13 +14,13 @@ import 'font-awesome/css/font-awesome.css';
 import './styles.css';
 
 const App = () => (
-  <Provider store={store}>
+  // <Provider store={store}>
     <Fragment>
       <Routes>
         <ToastContainer autoClose={5000} />
       </Routes>
     </Fragment>
-  </Provider>
+  // </Provider>
 );
 
 export default App;
