@@ -9,7 +9,7 @@ import './styles.css';
 
 const LeftBar = ({ users, removeUser }) => (
   <div className="left-bar">
-    {!users.data.length && <p>Nenhum usuário adicionado</p>}
+    {!users.data.length && <p>Nenhum usuÃ¡rio adicionado</p>}
     <ul>
       {users.data.map(user => (
         <li key={user.id}>

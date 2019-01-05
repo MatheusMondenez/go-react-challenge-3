@@ -73,10 +73,10 @@ class AddUser extends Component {
         className="modal-container"
         overlayClassName="modal-overlay"
       >
-        <h2>Adicionar novo usu·rio</h2>
+        <h2>Adicionar novo usu√°rio</h2>
         <form onSubmit={this.handleFormSubmit} className="form">
           <input
-            placeholder="Usu·rio do Github"
+            placeholder="Usu√°rio do Github"
             value={userInput}
             onChange={this.handleInputChange}
           />

@@ -29,7 +29,7 @@ export const Creators = {
   showModal: cordinates => ({
     type: Types.SHOW,
     payload: { cordinates },
-  }),  
+  }),
   hideModal: () => ({
     type: Types.HIDE,
   }),

@@ -15,7 +15,7 @@ class Map extends Component {
       height: window.innerHeight,
       latitude: -23.5439948,
       longitude: -46.6065452,
-      zoom: 14
+      zoom: 14,
     },
   };
 
@@ -40,8 +40,8 @@ class Map extends Component {
 
   handleMapClick = async (e) => {
     const [longitude, latitude] = e.lngLat;
-    
-    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`)
+
+    this.props.showModal({ latitude, longitude });
   };
 
   render() {
@@ -49,12 +49,12 @@ class Map extends Component {
       <MapGL
         {...this.state.viewport}
         onClick={this.handleMapClick}
-        mapStyle='mapbox://styles/mapbox/basic-v9'
+        mapStyle="mapbox://styles/mapbox/basic-v9"
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onViewportChange={viewport => this.setState({ viewport })}
       >
         <Marker latitude={-23.5439948} longitude={-46.6065452}>
-          <img className='avatar' src='https://avatars2.githubusercontent.com/u/2254731?v=4' />
+          <img className="avatar" src="https://avatars2.githubusercontent.com/u/2254731?v=4" />
         </Marker>
       </MapGL>
     );
@@ -67,4 +67,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Map);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Map);
